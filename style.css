@@ -38,3 +38,11 @@ body{
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+.user-section button {
+    padding: 8px;
+    border: none;
+    background-color: #5cb85c;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
