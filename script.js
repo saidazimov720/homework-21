@@ -108,8 +108,7 @@ function sendMessage(index) {
         }
         messageArea.innerHTML += messageHtml;
         messageArea.scrollTop = messageArea.scrollHeight;  
-
-    
         messageInput.value = '';
     }
 }
+displayUsers();
