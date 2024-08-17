@@ -1,0 +1,1 @@
+const adminPasword = "admin123";
