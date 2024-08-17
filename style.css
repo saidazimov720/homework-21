@@ -20,4 +20,9 @@ body{
     margin-bottom: 20px;
     padding: 10px;
     border-bottom: 1px solid #ddd;
+    height: 150px;
+    overflow-y: auto;
+    background-color: white;
+    text-align: left;
+    font-size: 14px;
 }
