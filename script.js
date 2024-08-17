@@ -64,4 +64,8 @@ class User extends PrimeUser{
         return `User ${this.name}: ${this.message}`;
     }
 }
-
+let admin1 = new SuperAdmin("Nurbek", 24, "can", "can");
+let admin2 = new Admin("Abror", 27);
+let primary = new PrimeUser("Farida", 20, 5, 3);
+let just = new User("Jamshid", 10, 1);
+const users = [admin1, admin2, primary, just];
