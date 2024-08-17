@@ -1,5 +1,5 @@
-const adminPasword = "admin123";
-class SuperAdmin {
+const adminPassword = "admin123"; 
+class SuperAdmin {d
     constructor(name, age, edit, remove) {
         this.name = name;
         this.age = age;
@@ -8,15 +8,16 @@ class SuperAdmin {
         this.message = "";
     }
 
-    sendMessage(message){
+    sendMessage(message) {
         this.message = message;
-        return `SuperAdmin${this.name}: ${this.message}`;
+        return `SuperAdmin ${this.name}: ${this.message}`;
     }
-    removeMessage(messageId){
-        if (this.remove ==="can" && prompt("Enter Admin password") === adminPasword) {
-            document.getElementById(`message - ${messageId}`).remove();
-        }else{
-            alert("Incorrect password");
+
+    removeMessage(messageId) {
+        if (this.remove === "can" && prompt("Enter Admin Password:") === adminPassword) {
+            document.getElementById(`message-${messageId}`).remove();
+        } else {
+            alert("Incorrect password or insufficient permissions.");
         }
     }
 }
@@ -25,41 +26,46 @@ class Admin extends SuperAdmin {
     constructor(name, age) {
         super(name, age, "limited", "limited");
     }
-    sendMessage(message){
+
+    sendMessage(message) {
         this.message = message;
         return `Admin ${this.name}: ${this.message}`;
     }
-    removeMessage(messageId){
-        if (prompt("Enter Admin password:" === adminPasword)) {
-            document.getElementById(`message - ${messageId}`).remove();
+
+    removeMessage(messageId) {
+        if (prompt("Enter Admin Password:") === adminPassword) {
+            document.getElementById(`message-${messageId}`).remove();
         } else {
-            alert("Incorrect password");
+            alert("Incorrect password.");
         }
     }
 }
 
 class PrimeUser {
-    constructor(name, likes, chats, privatechats) {
+    constructor(name, likes, chats, privateChats) {
         this.name = name;
         this.likes = likes;
         this.chats = chats;
-        this.privatechats = privatechats;
+        this.privateChats = privateChats;
         this.message = "";
     }
-    sendMessage(message){
+
+    sendMessage(message) {
         this.message = message;
         return `PrimeUser ${this.name}: ${this.message}`;
     }
-    likeMessage(messageId){
-        const likeElement = document.getElementById(`like - ${messageId}`);
-        likeElement.textContent = parseInt(likeElement.textContent) + 1;
+
+    likeMessage(messageId) {
+        const likeCountElement = document.getElementById(`like-count-${messageId}`);
+        likeCountElement.textContent = parseInt(likeCountElement.textContent) + 1;
     }
 }
-class User extends PrimeUser{
+
+class User extends PrimeUser {
     constructor(name, likes, chats) {
-        super(name, likes, chats, "retricted");
+        super(name, likes, chats, "restricted");
     }
-    sendMessage(message){
+    sendMessage(message) {
         this.message = message;
         return `User ${this.name}: ${this.message}`;
     }
@@ -69,25 +75,28 @@ let admin2 = new Admin("Abror", 27);
 let admin3 = new Admin("Laziz", 20);
 let primary = new PrimeUser("Farida", 20, 5, 3);
 let just = new User("Jamshid", 10, 1);
-const users = [admin1, admin2, primary, just];
+const users = [admin1, admin2, admin3, primary, just];
+
 
 function displayUsers() {
-    const userCon = document.getElementById("con");
+    const userCon = document.getElementById('userCon');
     userCon.innerHTML = '';
-    users.forEach((user, index) =>{
-        const userArea = document.createElement('div');
-        userArea.className = 'user-sections';
-        userArea.innerHTML = `
-        <input type="text" id="messageInput${index}" placeholder="Enter your message...">
-            <button onclick="sendMessage(${index})">Send</button>`;
-        userCon.appendChild(userArea);    
+
+    users.forEach((index) => {
+        const userSection = document.createElement('div');
+        userSection.className = 'user-section';
+        userSection.innerHTML = `
+            <input type="text" id="messageInput${index}" placeholder="Enter your message...">
+            <button onclick="sendMessage(${index})">Send</button>
+        `;
+        userCon.appendChild(userSection);
     });
 }
 
-let messageIdSum = 0;
+let messageIdCounter = 0;
 function sendMessage(index) {
-    const messageInput = document.getElementById('messageArea');
-    const message = messageInput++;
+    const messageInput = document.getElementById(`messageInput${index}`);
+    const message = messageInput.value;
 
     if (message.trim() !== "") {
         const messageArea = document.getElementById('messageArea');
@@ -106,6 +115,7 @@ function sendMessage(index) {
                 <span id="like-count-${messageId}">0</span>
             </div>`;
         }
+        messageHtml += `</div>`;
         messageArea.innerHTML += messageHtml;
         messageArea.scrollTop = messageArea.scrollHeight;  
         messageInput.value = '';
