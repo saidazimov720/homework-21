@@ -55,3 +55,13 @@ class PrimeUser {
         likeElement.textContent = parseInt(likeElement.textContent) + 1;
     }
 }
+class User extends PrimeUser{
+    constructor(name, likes, chats) {
+        super(name, likes, chats, "retricted");
+    }
+    sendMessage(message){
+        this.message = message;
+        return `User ${this.name}: ${this.message}`;
+    }
+}
+
