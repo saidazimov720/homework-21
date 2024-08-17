@@ -7,4 +7,16 @@ class SuperAdmin {
         this.remove = remove;
         this.message = "";
     }
+
+    sendMessage(message){
+        this.message = message;
+        return `SuperAdmin${this.name}: ${this.message}`;
+    }
+    removeMessage(messageId){
+        if (this.remove ==="can" && prompt("Enter Admin password") === adminPasword) {
+            document.getElementById(`message - ${messageId}`).remove();
+        }else{
+            alert("Incorrect password");
+        }
+    }
 }
