@@ -76,7 +76,7 @@ function displayUsers() {
     userCon.innerHTML = '';
     users.forEach((user, index) =>{
         const userArea = document.createElement('div');
-        userArea.className = 'user-area';
+        userArea.className = 'user-sections';
         userArea.innerHTML = `
         <input type="text" id="messageInput${index}" placeholder="Enter your message...">
             <button onclick="sendMessage(${index})">Send</button>`;
