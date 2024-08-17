@@ -72,5 +72,14 @@ let just = new User("Jamshid", 10, 1);
 const users = [admin1, admin2, primary, just];
 
 function displayUsers() {
-    
+    const userCon = document.getElementById("con");
+    userCon.innerHTML = '';
+    users.forEach((user, index) =>{
+        const userArea = document.createElement('div');
+        userArea.className = 'user-area';
+        userArea.innerHTML = `
+        <input type="text" id="messageInput${index}" placeholder="Enter your message...">
+            <button onclick="sendMessage(${index})">Send</button>`;
+        userCon.appendChild(userArea);    
+    });
 }
