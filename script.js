@@ -65,6 +65,7 @@ class User extends PrimeUser {
     constructor(name, likes, chats) {
         super(name, likes, chats, "restricted");
     }
+
     sendMessage(message) {
         this.message = message;
         return `User ${this.name}: ${this.message}`;
@@ -79,17 +80,16 @@ const users = [admin1, admin2, admin3, primary, just];
 
 
 function displayUsers() {
-    const userCon = document.getElementById('userCon');
-    userCon.innerHTML = '';
-
-    users.forEach((index) => {
+    const userContainer = document.getElementById('userContainer');
+    userContainer.innerHTML = '';
+    users.forEach((user, index) => {
         const userSection = document.createElement('div');
         userSection.className = 'user-section';
         userSection.innerHTML = `
             <input type="text" id="messageInput${index}" placeholder="Enter your message...">
             <button onclick="sendMessage(${index})">Send</button>
         `;
-        userCon.appendChild(userSection);
+        userContainer.appendChild(userSection);
     });
 }
 
