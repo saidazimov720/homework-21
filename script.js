@@ -20,3 +20,20 @@ class SuperAdmin {
         }
     }
 }
+
+class Admin extends SuperAdmin {
+    constructor(name, age) {
+        super(name, age, "limited", "limited");
+    }
+    sendMessage(message){
+        this.message = message;
+        return `Admin ${this.name}: ${this.message}`;
+    }
+    removeMessage(messageId){
+        if (prompt("Enter Admin password:" === adminPasword)) {
+            document.getElementById(`message - ${messageId}`).remove();
+        } else {
+            alert("Incorrect password");
+        }
+    }
+}
