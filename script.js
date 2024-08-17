@@ -1,5 +1,5 @@
 const adminPassword = "admin123"; 
-class SuperAdmin {d
+class SuperAdmin {
     constructor(name, age, edit, remove) {
         this.name = name;
         this.age = age;
