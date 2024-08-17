@@ -16,3 +16,8 @@ body{
     width: 400px;
     text-align: center;
 }
+#textarea{
+    margin-bottom: 20px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
