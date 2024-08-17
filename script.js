@@ -37,3 +37,21 @@ class Admin extends SuperAdmin {
         }
     }
 }
+
+class PrimeUser {
+    constructor(name, likes, chats, privatechats) {
+        this.name = name;
+        this.likes = likes;
+        this.chats = chats;
+        this.privatechats = privatechats;
+        this.message = "";
+    }
+    sendMessage(message){
+        this.message = message;
+        return `PrimeUser ${this.name}: ${this.message}`;
+    }
+    likeMessage(messageId){
+        const likeElement = document.getElementById(`like - ${messageId}`);
+        likeElement.textContent = parseInt(likeElement.textContent) + 1;
+    }
+}
