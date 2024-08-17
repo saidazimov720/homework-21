@@ -83,3 +83,33 @@ function displayUsers() {
         userCon.appendChild(userArea);    
     });
 }
+
+let messageIdSum = 0;
+function sendMessage(index) {
+    const messageInput = document.getElementById('messageArea');
+    const message = messageInput++;
+
+    if (message.trim() !== "") {
+        const messageArea = document.getElementById('messageArea');
+        const messageId = messageIdCounter++;
+
+        let messageHtml = `<div id="message-${messageId}" class="message">
+            <p>${users[index].sendMessage(message)}</p>`;
+
+        if (users[index] instanceof Admin || users[index] instanceof SuperAdmin) {
+            messageHtml += `<div class="message-actions">
+                <button onclick="users[${index}].removeMessage(${messageId})">Remove</button>
+            </div>`;
+        } else if (users[index] instanceof PrimeUser) {
+            messageHtml += `<div class="message-actions">
+                <button onclick="users[${index}].likeMessage(${messageId})">Like</button>
+                <span id="like-count-${messageId}">0</span>
+            </div>`;
+        }
+        messageArea.innerHTML += messageHtml;
+        messageArea.scrollTop = messageArea.scrollHeight;  
+
+    
+        messageInput.value = '';
+    }
+}
